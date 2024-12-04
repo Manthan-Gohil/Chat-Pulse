@@ -46,7 +46,8 @@ if uploaded_file is not None:
         st.title("Monthly Timeline")
         timeline = helper.monthly_timeline(selected_user,df)
         fig,ax = plt.subplots()
-        ax.plot(timeline['time'],timeline['messsage'],color='violet')
+        ax.plot(timeline['time'],timeline['messsage'],marker='o', color='c',
+         markerfacecolor='pink', linestyle='-', linewidth=1.5,markersize=6)
         plt.xticks(rotation='vertical')
         plt.grid(True)
         st.pyplot(fig)
@@ -133,7 +134,12 @@ if uploaded_file is not None:
 
         with col2:
             fig,ax = plt.subplots()
-            ax.pie(emoji_df[1].head(), labels=emoji_df[0].head())
+            explode = [0,0,0.1,0,0]
+            textprops={"fontsize":15}
+            wedgeprops={"linestyle":"--","linewidth":1.5,"edgecolor":"k"}
+            ax.pie(emoji_df[1].head(), labels=emoji_df[0].head(),explode=explode,
+                autopct = "%0.2f%%",shadow=True,radius=1.4,startangle=90,
+                textprops=textprops,wedgeprops=wedgeprops)
             st.pyplot(fig)
 
         
